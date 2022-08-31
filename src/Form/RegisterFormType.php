@@ -64,6 +64,7 @@ class RegisterFormType extends AbstractType
             ->add('gender', ChoiceType::class, [
                 'label' => 'Civilité',
                 'expanded' => true,
+                # expanded pour changer la forme de sélection
                 'choices' => [
                     'Homme' => 'homme',
                     'Femme' => 'femme',
