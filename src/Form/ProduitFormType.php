@@ -4,11 +4,12 @@ namespace App\Form;
 
 use App\Entity\Produit;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ProduitFormType extends AbstractType
@@ -41,7 +42,16 @@ class ProduitFormType extends AbstractType
             ])
             ->add('photo', FileType::class, [
                 'label' => 'Photo du produit',
-
+                'data_class' => null,
+                'constraints' => [
+                    new Image([
+                        'mimeTypes' => ['image/jpeg', 'image/png'],
+                        'mimeTypesMessage' => 'Les formats autorisés sont : .jpg, .png',
+                        'maxSize' => '3M',
+                        'maxSizeMessage' => 'Le poids maximal du fichier est : {{ limit }} {{ suffix }} => {{ name }}: {{ size }} {{ suffix }}'
+                    ]),
+                ],
+                'help' => 'Fichiers autorisés : .jpg, .png'
             ])
             ->add('price', TextType::class, [
                 'label' => 'Prix unitaire'
@@ -53,7 +63,7 @@ class ProduitFormType extends AbstractType
             // ->add('updatedAt')
             // ->add('deletedAt')
             ->add('submit', SubmitType::class, [
-                'label' => 'Ajouter',
+                'label' => $options['photo'] ? 'Modifier' : 'Ajouter',
                 'validate' => false,
                 'attr' => [
                     'class' => 'd-block mx-auto btn btn-success col-3'

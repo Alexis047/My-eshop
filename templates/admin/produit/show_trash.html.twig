@@ -1,19 +1,16 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Gérer les produits{% endblock %}
+{% block title %}Voir les archives{% endblock %}
 
 {% block body %}
 
-    <h1 class="text-center my-3">Gestion des produits</h1>
+    <h1 class="text-center my-3">Produits archivés</h1>
 
     {% include "include/_flashes.html.twig" %}
 
     <div class="row">
         <div class="col-6 mx-auto">
-            <a href="{{ path('add_produit') }}" class="d-block mx-auto btn btn-primary col-4">Ajouter un produit <i class="fa fa-plus-circle"></i></a>
-        </div>
-        <div class="col-6 mx-auto">
-            <a href="{{ path('show_trash') }}" class="d-block mx-auto btn btn-primary col-4">Produits archivés <i class="fa fa-eye"></i></a>
+            <a href="{{ path('show_produits') }}" class="d-block mx-auto btn btn-primary col-4">Retour</a>
         </div>
     </div>
 
@@ -38,7 +35,7 @@
                 </thead>
                 <tbody>
 
-                {% for produit in produits %}
+                {# {% for produit in produits %}
                     <tr>
                         <td>{{ produit.id }}</td>
                         <td>{{ produit.title }}</td>
@@ -61,7 +58,7 @@
                     <tr>
                         <td colspan="11" class="bg-warning text-center">Aucun produit en ligne</td>
                     </tr>
-                {% endfor %}
+                {% endfor %} #}
                 
                 </tbody>
             </table>

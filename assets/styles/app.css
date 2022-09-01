@@ -1,0 +1,13 @@
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(238, 192, 149) !important;
+}
+
+.img-custom {
+    object-fit: contain;
+}
