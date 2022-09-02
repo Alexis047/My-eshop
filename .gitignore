@@ -20,3 +20,7 @@
 ###< symfony/phpunit-bridge ###
 
 /.vscode/*
+
+/public/build/
+/public/uploads/
+/node_modules/
