@@ -4,10 +4,11 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: rgb(238, 192, 149) !important;
-}
+/*body {*/
+/*    background-color: rgba(255, 228, 117, 0.66) !important;*/
+/*}*/
 
 .img-custom {
     object-fit: contain;
 }
+

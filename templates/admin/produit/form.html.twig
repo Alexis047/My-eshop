@@ -1,6 +1,6 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Ajout d'un produit{% endblock %}
+{% block title %}Ajouter un produit{% endblock %}
 
 {% block body %}
 
@@ -11,15 +11,17 @@
     {% endif %}
 
     <div class="row">
-        <div class="col-6 mx-auto">
-        
+        <div class="col-10 mx-auto">
+
             {{ form_start(form) }}
 
-                
-{{ form_row(form.submit) }}
+
             {{ form_end(form) }}
 
         </div>
     </div>
 
 {% endblock %}
+
+
+

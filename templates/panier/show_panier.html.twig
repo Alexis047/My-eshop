@@ -27,27 +27,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                
+
                     {% for item in app.session.get('panier') %}
+
                         <tr>
                             <td class="align-middle text-center">{{ item['produit'].id }}</td>
                             <td class="align-middle text-center">{{ item['produit'].title }}</td>
                             <td class="align-middle text-center">{{ item['quantity'] }}</td>
                             <td class="align-middle text-center">{{ item['produit'].price }}</td>
                             <td class="align-middle text-center">{{ item['produit'].price * item['quantity'] }}</td>
-                            <td class="align-middle text-center">{{ item['produit'].id }}</td>
+                            <td class="align-middle text-center">
+                                <a href=""></a>
+                            </td>
                         </tr>
+
                     {% else %}
                         <tr>
                             <td colspan="6" class="text-center bg-warning">Votre panier est vide</td>
-                        </tr>                            
+                        </tr>
                     {% endfor %}
-                
+
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="4" class="align-middle text-center">Montant total : </td>
-                        <td class="align-middle text-center">{{ total }}€</td>
+                        <td class="align-middle text-center">{{ total }} €</td>
                         <td></td>
                     </tr>
                 </tfoot>
@@ -60,7 +64,5 @@
 
         </div>
     </div>
-
-
 
 {% endblock %}

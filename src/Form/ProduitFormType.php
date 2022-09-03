@@ -4,13 +4,13 @@ namespace App\Form;
 
 use App\Entity\Produit;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\Image;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 class ProduitFormType extends AbstractType
 {
@@ -18,11 +18,11 @@ class ProduitFormType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Nom du produit'
+                'label' => 'Titre du produit',
             ])
             ->add('description')
             ->add('color', TextType::class, [
-                'label' => 'Couleur'
+                'label' => 'Couleur du produit',
             ])
             ->add('size', ChoiceType::class, [
                 'label' => 'Taille',
@@ -30,7 +30,7 @@ class ProduitFormType extends AbstractType
                     'S' => 's',
                     'M' => 'm',
                     'L' => 'l',
-                    'XL' => 'xl'
+                    'XL' => 'xl',
                 ],
             ])
             ->add('gender', ChoiceType::class, [
@@ -48,25 +48,22 @@ class ProduitFormType extends AbstractType
                         'mimeTypes' => ['image/jpeg', 'image/png'],
                         'mimeTypesMessage' => 'Les formats autorisés sont : .jpg, .png',
                         'maxSize' => '3M',
-                        'maxSizeMessage' => 'Le poids maximal du fichier est : {{ limit }} {{ suffix }} => {{ name }}: {{ size }} {{ suffix }}'
+                        'maxSizeMessage' => "Le poids maximal du fichier est : {{ limit }} {{ suffix }} => {{ name }}: {{ size }} {{ suffix }}"
                     ]),
                 ],
-                'help' => 'Fichiers autorisés : .jpg, .png'
+                'help' => 'Fichiers autorisés: .jpg, .png',
             ])
             ->add('price', TextType::class, [
-                'label' => 'Prix unitaire'
+                'label' => 'Prix unitaire',
             ])
             ->add('stock', TextType::class, [
-                'label' => 'Quantité en stock'
+                'label' => 'Quantité en stock',
             ])
-            // ->add('createdAt')
-            // ->add('updatedAt')
-            // ->add('deletedAt')
             ->add('submit', SubmitType::class, [
                 'label' => $options['photo'] ? 'Modifier' : 'Ajouter',
                 'validate' => false,
                 'attr' => [
-                    'class' => 'd-block mx-auto btn btn-success col-3'
+                    'class' => 'd-block mx-auto btn btn-primary col-3'
                 ],
             ])
         ;

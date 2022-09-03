@@ -6,16 +6,16 @@ use App\Entity\User;
 use App\Form\RegisterFormType;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 class RegisterController extends AbstractController
 {
     #[Route('/inscription', name: 'user_register', methods: ['GET', 'POST'])]
-    public function register(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher)
+    public function register(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         # Cette condition permet de détecter si un utilisateur est connecté.
         # Si oui, alors l'utilisateur est redirigé.
@@ -23,6 +23,7 @@ class RegisterController extends AbstractController
         if ($this->getUser()) {
             return $this->redirectToRoute('default_home');
         }
+
         # 1 - Instanciation
         $user = new User();
 
@@ -36,7 +37,7 @@ class RegisterController extends AbstractController
             # Set des propriétés qui ne sont pas dans le formulaire
             $user->setCreatedAt(new DateTime());
             $user->setUpdatedAt(new DateTime());
-            #La propriété "roles" est un array (tableau)
+            # La propriété "roles" est un array [tableau]
             $user->setRoles(['ROLE_USER']);
 
             # Nous devons resetter manuellement le password, car par défaut il n'est pas hashé.
@@ -52,14 +53,14 @@ class RegisterController extends AbstractController
             $entityManager->flush();
 
             # La méthode addFlash() nous permet d'ajouter des messages destinés à l'utilisateur.
-            # On poura tous les afficher en front (avec Twig)
+            # On pourra tous les afficher en front (avec Twig)
             $this->addFlash('success', 'Votre inscription a été effectué avec succès !');
             return $this->redirectToRoute('default_home');
-        }
+        } // end if
 
         # 3 - Rendu de la vue Twig, avec le formulaire
         return $this->render('register/form.html.twig', [
-            'form' => $form->createView() #createView() permet de générer le HTML pour l'affichage
+            'form' => $form->createView() # createView() permet de générer le HTML pour l'affichage
         ]);
     }
 }
