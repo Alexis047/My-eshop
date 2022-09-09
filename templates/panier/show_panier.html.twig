@@ -38,7 +38,7 @@
 							<td class="align-middle text-center">{{ item['produit'].price }}</td>
 							<td class="align-middle text-center">{{ item['produit'].price * item['quantity'] }}</td>
 							<td class="align-middle text-center">
-								<a href="{{ path('delete_item') }}" title="Retirer cette article" class="btn btn-sm btn-danger">
+								<a href="{{ path('delete_item', {id: item['produit'].id}) }}" title="Retirer cette article" class="btn btn-sm btn-danger">
 									<i class="fa-solid fa-times"></i>
 								</a>
 							</td>
